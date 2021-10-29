@@ -326,6 +326,7 @@ export class VideoService extends Service {
   /**
    * @warning DO NOT USE THIS METHOD. Use the Display class instead
    */
+  @logCall()
   createOBSDisplay(
     electronWindowId: number,
     name: string,
@@ -349,38 +350,47 @@ export class VideoService extends Service {
     }
   }
 
+  @logCall()
   setOBSDisplayPaddingColor(name: string, r: number, g: number, b: number) {
     obs.NodeObs.OBS_content_setPaddingColor(name, r, g, b);
   }
 
+  @logCall()
   setOBSDisplayPaddingSize(name: string, size: number) {
     obs.NodeObs.OBS_content_setPaddingSize(name, size);
   }
 
+  @logCall()
   moveOBSDisplay(name: string, x: number, y: number) {
     obs.NodeObs.OBS_content_moveDisplay(name, x, y);
   }
 
+  @logCall()
   resizeOBSDisplay(name: string, width: number, height: number) {
     obs.NodeObs.OBS_content_resizeDisplay(name, width, height);
   }
 
+  @logCall()
   destroyOBSDisplay(name: string) {
     obs.NodeObs.OBS_content_destroyDisplay(name);
   }
 
+  @logCall()
   getOBSDisplayPreviewOffset(name: string): IVec2 {
     return obs.NodeObs.OBS_content_getDisplayPreviewOffset(name);
   }
 
+  @logCall()
   getOBSDisplayPreviewSize(name: string): { width: number; height: number } {
     return obs.NodeObs.OBS_content_getDisplayPreviewSize(name);
   }
 
+  @logCall()
   setOBSDisplayShouldDrawUI(name: string, drawUI: boolean) {
     obs.NodeObs.OBS_content_setShouldDrawUI(name, drawUI);
   }
 
+  @logCall()
   setOBSDisplayDrawGuideLines(name: string, drawGuideLines: boolean) {
     obs.NodeObs.OBS_content_setDrawGuideLines(name, drawGuideLines);
   }
@@ -393,4 +403,20 @@ export class VideoService extends Service {
   createOBSIOSurface(name: string) {
     return obs.NodeObs.OBS_content_createIOSurface(name);
   }
+}
+
+/**
+ * Decorator to wrap a named method and log its arguments
+ */
+export function logCall() {
+  return (target: unknown, methodName: string, descriptor: PropertyDescriptor) => {
+    const original = descriptor.value;
+
+    descriptor.value = function (...args: unknown[]) {
+      console.log(`Call to ${methodName}:`, args);
+      original.apply(this, args);
+    };
+
+    return descriptor;
+  };
 }
