@@ -55,6 +55,8 @@ export default class MediaGallery extends Vue {
   private audio: HTMLAudioElement = null;
 
   async mounted() {
+    console.log('MEDIA GALLERY MOUNT');
+
     this.galleryInfo = await this.mediaGalleryService.fetchGalleryInfo();
     if (this.filter) this.type = this.filter;
 
@@ -64,6 +66,7 @@ export default class MediaGallery extends Vue {
   }
 
   destroyed() {
+    console.log('MEDIA GALLERY DESTROY');
     if (this.socketConnection) this.socketConnection.unsubscribe();
     if (this.audio) {
       this.audio.pause();
