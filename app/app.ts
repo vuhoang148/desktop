@@ -306,8 +306,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // ipcRenderer.send('unregister-in-crash-handler', { pid: process.pid });
 
-      obs.NodeObs.InitShutdownSequence();
-      obs.IPC.disconnect();
+      obs.NodeObs.OBS_API_destroyOBS_API();
 
       electron.ipcRenderer.send('shutdownComplete');
       return;

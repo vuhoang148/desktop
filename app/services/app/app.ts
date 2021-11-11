@@ -178,7 +178,6 @@ export class AppService extends StatefulService<IAppState> {
     this.tcpServerService.stopListening();
 
     window.setTimeout(async () => {
-      obs.NodeObs.InitShutdownSequence();
       this.crashReporterService.beginShutdown();
       this.shutdownStarted.next();
       this.keyListenerService.shutdown();
@@ -194,7 +193,7 @@ export class AppService extends StatefulService<IAppState> {
       await this.fileManagerService.flushAll();
       obs.NodeObs.RemoveSourceCallback();
       obs.NodeObs.OBS_service_removeCallback();
-      obs.IPC.disconnect();
+      obs.NodeObs.OBS_API_destroyOBS_API();
       this.crashReporterService.endShutdown();
       electron.ipcRenderer.send('shutdownComplete');
     }, 300);
