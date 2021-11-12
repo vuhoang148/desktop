@@ -42,9 +42,9 @@ export class PlatformAppManager extends PropertiesManager {
 
         // Force an update, since the URL probably didn't change, so
         // the browser source won't automatically reload it
-        (this.obsSource.properties.get('refreshnocache') as obs.IButtonProperty).buttonClicked(
-          this.obsSource,
-        );
+        (this.obsSource.properties.find(prop => {
+          return prop.name === 'refreshnocache';
+        }) as obs.IButtonProperty).buttonClicked(this.obsSource);
       }
     });
 

@@ -307,98 +307,54 @@ export function getPropertiesFormData(obsSource: obs.ISource): TObsFormData {
   const obsSettings = obsSource.settings;
 
   if (!obsProps) return null;
-  if (!obsProps.count()) return null;
 
-  let obsProp = obsProps.first();
-  do {
-    let obsType: TObsType;
-
-    switch (obsProp.type) {
-      case obs.EPropertyType.Boolean:
-        obsType = 'OBS_PROPERTY_BOOL';
-        break;
-      case obs.EPropertyType.Int:
-        obsType = 'OBS_PROPERTY_INT';
-        break;
-      case obs.EPropertyType.Float:
-        obsType = 'OBS_PROPERTY_FLOAT';
-        break;
-      case obs.EPropertyType.List:
-        obsType = 'OBS_PROPERTY_LIST';
-        break;
-      case obs.EPropertyType.Text:
-        obsType = 'OBS_PROPERTY_TEXT';
-        break;
-      case obs.EPropertyType.Color:
-        obsType = 'OBS_PROPERTY_COLOR';
-        break;
-      case obs.EPropertyType.Font:
-        obsType = 'OBS_PROPERTY_FONT';
-        break;
-      case obs.EPropertyType.EditableList:
-        obsType = 'OBS_PROPERTY_EDITABLE_LIST';
-        break;
-      case obs.EPropertyType.Button:
-        obsType = 'OBS_PROPERTY_BUTTON';
-        break;
-      case obs.EPropertyType.Path:
-        switch ((obsProp as obs.IPathProperty).details.type) {
-          case obs.EPathType.File:
-            obsType = 'OBS_PROPERTY_FILE';
-            break;
-          case obs.EPathType.Directory:
-            obsType = 'OBS_PROPERTY_PATH';
-            break;
-        }
-        break;
-    }
-
+  obsProps.forEach(obsProp => {
     const formItem: IObsInput<TObsValue> = {
       value: obsProp.value,
       name: obsProp.name,
       description: $translateIfExist(obsProp.description),
       enabled: obsProp.enabled,
       visible: obsProp.visible,
-      type: obsType,
+      type: obsProp.type as TObsType,
     };
 
     // handle property details
 
     if (isListProperty(obsProp)) {
-      (formItem as IObsListInput<TObsValue>).options = obsProp.details.items.map(option => {
+      (formItem as IObsListInput<TObsValue>).options = obsProp.items.map(option => {
         return { value: option.value, description: option.name };
       });
     }
 
     if (isNumberProperty(obsProp)) {
       Object.assign(formItem as IObsNumberInputValue, {
-        minVal: obsProp.details.min,
-        maxVal: obsProp.details.max,
-        stepVal: obsProp.details.step,
+        minVal: obsProp.min,
+        maxVal: obsProp.max,
+        stepVal: obsProp.step,
       });
 
-      if (obsProp.details.type === obs.ENumberType.Slider) {
+      if (obsProp.fieldType === obs.ENumberType.Slider) {
         formItem.type = 'OBS_PROPERTY_SLIDER';
       }
     }
 
     if (isEditableListProperty(obsProp)) {
       Object.assign(formItem as IObsEditableListInputValue, {
-        filters: parsePathFilters(obsProp.details.filter),
-        defaultPath: obsProp.details.defaultPath,
+        filters: parsePathFilters(obsProp.filter),
+        defaultPath: obsProp.defaultPath,
       });
     }
 
     if (isPathProperty(obsProp)) {
       Object.assign(formItem as IObsPathInputValue, {
-        filters: parsePathFilters(obsProp.details.filter),
-        defaultPath: obsProp.details.defaultPath,
+        filters: parsePathFilters(obsProp.filter),
+        defaultPath: obsProp.defaultPath,
       });
     }
 
     if (isTextProperty(obsProp)) {
       Object.assign(formItem as IObsTextInputValue, {
-        multiline: obsProp.details.type === obs.ETextType.Multiline,
+        multiline: obsProp.fieldType === obs.ETextType.Multiline,
       });
     }
 
@@ -407,7 +363,7 @@ export function getPropertiesFormData(obsSource: obs.ISource): TObsFormData {
     }
 
     formData.push(formItem);
-  } while ((obsProp = obsProp.next()));
+  });
 
   return formData;
 }
@@ -436,7 +392,9 @@ export function setPropertiesFormData(
   if (buttons.length !== 0) properties = obsSource.properties;
 
   for (const button of buttons) {
-    const obsButtonProp = properties.get(button.name) as obs.IButtonProperty;
+    const obsButtonProp = properties.find(prop => {
+      return prop.name === button.name;
+    }) as obs.IButtonProperty;
     obsButtonProp.buttonClicked(obsSource);
   }
 

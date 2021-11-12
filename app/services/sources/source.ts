@@ -196,7 +196,9 @@ export class Source implements ISourceApi {
   @ExecuteInWorkerProcess()
   refresh() {
     const obsInput = this.getObsInput();
-    (obsInput.properties.get('refreshnocache') as obs.IButtonProperty).buttonClicked(obsInput);
+    (obsInput.properties.find(prop => {
+      return prop.name === 'refreshnocache';
+    }) as obs.IButtonProperty).buttonClicked(obsInput);
   }
 
   /**

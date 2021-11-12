@@ -56,9 +56,9 @@ export class WebcamNode extends Node<ISchema, IContext> {
         [OS.Windows]: () =>
           this.resStringToResolution(input.settings['resolution'], input.settings['resolution']),
         [OS.Mac]: () => {
-          const selectedResolution = (input.properties.get(
-            'preset',
-          ) as IListProperty).details.items.find(i => i.value === input.settings['preset']);
+          const selectedResolution = (input.properties.find(prop => {
+            return prop.name === 'preset';
+          }) as IListProperty).items.find(i => i.value === input.settings['preset']);
 
           return this.resStringToResolution(
             selectedResolution.name as string,
@@ -113,16 +113,20 @@ export class WebcamNode extends Node<ISchema, IContext> {
     // one is actually the webcam.  For most users, their webcam
     // will be the only option here.
     const deviceProperty = byOS({
-      [OS.Windows]: () => input.properties.get('video_device_id') as IListProperty,
-      [OS.Mac]: () => input.properties.get('device') as IListProperty,
+      [OS.Windows]: () => input.properties.find(prop => {
+        return prop.name === 'video_device_id';
+      }) as IListProperty,
+      [OS.Mac]: () => input.properties.find(prop => {
+        return prop.name === 'device';
+      }) as IListProperty,
     });
 
     // Stop loading if there aren't any devices
-    if ((deviceProperty as IListProperty).details.items.length === 0) return;
+    if ((deviceProperty as IListProperty).items.length === 0) return;
 
     const device = this.defaultHardwareService.state.defaultVideoDevice
       ? this.defaultHardwareService.state.defaultVideoDevice
-      : deviceProperty.details.items.find(i => i.value)?.value;
+      : deviceProperty.items.find(i => i.value)?.value;
 
     if (!device) return;
 
@@ -131,14 +135,18 @@ export class WebcamNode extends Node<ISchema, IContext> {
       [OS.Windows]: () => {
         input.update({ video_device_id: device, res_type: 1 });
 
-        return (input.properties.get('resolution') as IListProperty).details.items.map(item => {
+        return (input.properties.find(prop => {
+          return prop.name === 'resolution';
+        }) as IListProperty).items.map(item => {
           return this.resStringToResolution(item.value as string, item.value as string);
         });
       },
       [OS.Mac]: () => {
         input.update({ device, use_preset: true });
 
-        return (input.properties.get('preset') as IListProperty).details.items.map(item => {
+        return (input.properties.find(prop => {
+          return prop.name === 'preset';
+        }) as IListProperty).items.map(item => {
           return this.resStringToResolution(item.name as string, item.value as string);
         });
       },

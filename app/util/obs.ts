@@ -10,13 +10,12 @@ import * as obs from '../../obs-api';
  * current value of a setting.
  * @param props the OBS properties object
  */
-export function propsToSettings(props: obs.IProperties) {
+export function propsToSettings(props: obs.IProperty[]) {
   const settings: obs.ISettings = {};
-  let prop = props.first();
 
-  do {
+  props.forEach((prop: obs.IProperty) => {
     settings[prop.name] = prop.value;
-  } while ((prop = prop.next()));
+  });
 
   return settings;
 }
