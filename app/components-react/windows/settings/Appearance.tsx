@@ -6,7 +6,7 @@ import { useBinding } from '../../store';
 import { CheckboxInput, ListInput, SliderInput } from '../../shared/inputs';
 import { getDefined } from '../../../util/properties-type-guards';
 import { ObsSettingsSection } from './ObsSettings';
-import { cloneDeep } from 'lodash';
+import cloneDeep from 'lodash/cloneDeep';
 
 export function AppearanceSettings() {
   const { CustomizationService, WindowsService, UserService, MagicLinkService } = Services;

@@ -27,7 +27,7 @@ import { DownloadOutlined } from '@ant-design/icons';
 import { alertAsync, confirmAsync } from '../../modals';
 import { I18nService, WHITE_LIST } from '../../../services/i18n';
 import { mutation } from '../../store';
-import { pick } from 'lodash';
+import pick from 'lodash/pick';
 import { useModule } from '../../hooks/useModule';
 import { merge } from '../../../util/merge';
 import { DemoForm } from './DemoForm';

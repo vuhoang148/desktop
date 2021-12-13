@@ -10,6 +10,10 @@ const plugins = [];
 
 const commit = cp.execSync('git rev-parse --short HEAD').toString().replace('\n', '');
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+plugins.push(new BundleAnalyzerPlugin());
+
 plugins.push(
   new webpack.DefinePlugin({
     SLOBS_BUNDLE_ID: JSON.stringify(commit),

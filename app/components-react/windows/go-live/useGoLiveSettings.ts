@@ -9,7 +9,7 @@ import { mutation } from '../../store';
 import { useModule, useModuleRoot } from '../../hooks/useModule';
 import { useForm } from '../../shared/inputs/Form';
 import { getDefined } from '../../../util/properties-type-guards';
-import { isEqual } from 'lodash';
+import isEqual from 'lodash/isEqual';
 
 type TCommonFieldName = 'title' | 'description';
 

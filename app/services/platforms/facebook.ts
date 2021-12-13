@@ -11,7 +11,7 @@ import { BasePlatformService } from './base-platform';
 import electron from 'electron';
 import { WindowsService } from '../windows';
 import { assertIsDefined, getDefined } from '../../util/properties-type-guards';
-import { flatten } from 'lodash';
+import flatten from 'lodash/flatten';
 
 interface IFacebookPage {
   access_token: string;
