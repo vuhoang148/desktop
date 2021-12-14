@@ -27,6 +27,7 @@ import { Button } from 'antd';
 import InputWrapper from '../shared/inputs/InputWrapper';
 import { $t, $translateIfExist } from '../../services/i18n';
 import Utils from 'services/utils';
+import {ObsResolutionInput} from "../../components/obs/inputs";
 
 interface IObsFormProps {
   value: IObsInput<TObsValue>[];
@@ -137,6 +138,9 @@ function ObsInput(p: IObsInputProps) {
 
     case 'OBS_PROPERTY_FILE':
       return <FileInput {...inputProps} filters={(p.value as IObsPathInputValue).filters} />;
+
+    case 'OBS_RESOLUTION_INPUT':
+      return <ObsResolutionInput {...inputProps} />;
 
     case 'OBS_PROPERTY_COLOR':
       // eslint-disable-next-line no-case-declarations

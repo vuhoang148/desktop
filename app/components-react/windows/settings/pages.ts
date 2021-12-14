@@ -2,7 +2,7 @@ export * from './General';
 // 'Stream',
 // 'Output',
 export * from './Audio';
-// 'Video',
+export * from './Video';
 // 'Hotkeys',
 export * from './Advanced';
 // 'SceneCollections',
