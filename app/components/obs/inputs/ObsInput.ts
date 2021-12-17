@@ -392,10 +392,7 @@ export function setPropertiesFormData(
   if (buttons.length !== 0) properties = obsSource.properties;
 
   for (const button of buttons) {
-    const obsButtonProp = properties.find(prop => {
-      return prop.name === button.name;
-    }) as obs.IButtonProperty;
-    obsButtonProp.buttonClicked(obsSource);
+    obsSource.buttonClicked(button.name);
   }
 
   let settings: Dictionary<TObsValue> = {};
