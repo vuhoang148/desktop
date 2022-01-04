@@ -17,6 +17,7 @@ import { AppService } from 'services/app';
 import { RunInLoadingMode } from 'services/app/app-decorators';
 import defaultTo from 'lodash/defaultTo';
 import { $t } from 'services/i18n';
+import * as remote from '@electron/remote';
 
 interface Source {
   name?: string;
@@ -81,7 +82,7 @@ interface IOBSConfigJSON {
 
 class ObsImporterViews extends ViewHandler<{ progress: number; total: number }> {
   get OBSconfigFileDirectory() {
-    return path.join(electron.remote.app.getPath('appData'), 'obs-studio');
+    return path.join(remote.app.getPath('appData'), 'obs-studio');
   }
 
   get sceneCollectionsDirectory() {
@@ -175,7 +176,7 @@ export class ObsImporterService extends StatefulService<{ progress: number; tota
   importFilters(filtersJSON: IOBSConfigFilter[], source: Source) {
     if (Array.isArray(filtersJSON)) {
       filtersJSON.forEach(filterJSON => {
-        const isFilterAvailable = this.filtersService.getTypes().find(availableFilter => {
+        const isFilterAvailable = this.filtersService.state.types.find(availableFilter => {
           return availableFilter.type === filterJSON.id;
         });
 

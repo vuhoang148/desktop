@@ -19,6 +19,7 @@ import {
   EAvailableFeatures,
   IncrementalRolloutService,
 } from '../../../services/incremental-rollout';
+import * as remote from '@electron/remote';
 
 class ConnectProps {
   continue: () => void = () => {};
@@ -54,7 +55,7 @@ export default class Connect extends TsxComponent<ConnectProps> {
     );
 
     if (result === EPlatformCallResult.TwitchTwoFactor) {
-      electron.remote.dialog
+      remote.dialog
         .showMessageBox({
           type: 'error',
           message: $t(
@@ -66,7 +67,7 @@ export default class Connect extends TsxComponent<ConnectProps> {
         })
         .then(({ response }) => {
           if (response === 0) {
-            electron.remote.shell.openExternal('https://twitch.tv/settings/security');
+            remote.shell.openExternal('https://twitch.tv/settings/security');
           }
         });
     } else {
@@ -91,7 +92,7 @@ export default class Connect extends TsxComponent<ConnectProps> {
   }
 
   contactSupport() {
-    electron.remote.shell.openExternal('https://support.streamlabs.com');
+    remote.shell.openExternal('https://support.streamlabs.com');
   }
 
   onSkip() {
@@ -132,12 +133,12 @@ export default class Connect extends TsxComponent<ConnectProps> {
             <p style="margin-bottom: 80px;">
               {this.isSecurityUpgrade
                 ? this.securityUpgradeLink
-                : $t('Sign in with your streaming account to get started with Streamlabs OBS')}
+                : $t('Sign in with your streaming account to get started with Streamlabs')}
             </p>
           )}
           {this.isRelog && (
             <h3 style={{ marginBottom: '16px' }}>
-              Your login has expired. Please re-login to continue using Streamlabs OBS
+              Your login has expired. Please re-login to continue using Streamlabs
             </h3>
           )}
           <div class={styles.signupButtons}>

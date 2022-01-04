@@ -45,8 +45,8 @@ export interface IInputCommonProps<TValue> {
   max?: number;
   placeholder?: string;
   disabled?: boolean;
+  readOnly?: boolean;
   debounce?: number;
-  emptyVal?: string;
   /**
    * true if the input is in the uncontrolled mode
    * all input components except text inputs are controlled by default
@@ -103,7 +103,7 @@ type TCreateSlobsInputProps<
  */
 export function useInput<
   TInputProps extends TSlobsInputProps<{}, any>,
-  TValue = TInputProps['value']
+  TValue = NonNullable<TInputProps['value']>
 >(type: TInputType, inputProps: TInputProps, antFeatures?: readonly string[]) {
   const { name, value, label } = inputProps;
 
@@ -148,12 +148,9 @@ export function useInput<
   }
 
   useEffect(() => {
-    // set empty string as a default empty value
-    const emptyVal = typeof inputProps.emptyVal === 'undefined' ? '' : inputProps.emptyVal;
-
     // if the input is inside the form
     // then we need to setup it's value via Form API
-    if (form && value !== emptyVal) {
+    if (form) {
       // get the component class
       const Component = getInputComponentByType(type);
 
@@ -224,6 +221,7 @@ export function useInput<
       'labelCol',
       'wrapperCol',
       'disabled',
+      'readOnly',
       'nowrap',
       'layout',
       'rules',
@@ -241,11 +239,11 @@ export function useInput<
 
   // pick props for the input element
   const inputAttrs = {
-    ...(pick(inputProps, 'disabled', 'placeholder', 'size', antFeatures || []) as {}),
+    ...(pick(inputProps, 'disabled', 'readOnly', 'placeholder', 'size', antFeatures || []) as {}),
     ...dataAttrs,
     'data-role': 'input',
     name: inputId,
-    value: localValueRef.current,
+    value: localValueRef.current as TValue,
     onChange,
   };
 
