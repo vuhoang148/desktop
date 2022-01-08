@@ -235,6 +235,7 @@ export function useInput<
 
   // sync wrapperAttrs with ref
   const wrapperAttrsRef = useRef(wrapperAttrs);
+  Object.keys(wrapperAttrsRef.current).forEach(key => delete wrapperAttrsRef.current[key]);
   Object.assign(wrapperAttrsRef.current, wrapperAttrs);
 
   // pick props for the input element
@@ -249,6 +250,7 @@ export function useInput<
 
   // sync inputAttrs with ref
   const inputAttrsRef = useRef(inputAttrs);
+  Object.keys(inputAttrsRef.current).forEach(key => delete inputAttrsRef.current[key]);
   Object.assign(inputAttrsRef.current, inputAttrs);
 
   return {
