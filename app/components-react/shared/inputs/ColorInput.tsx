@@ -11,7 +11,7 @@ import { HexColorPicker, RgbaColorPicker } from 'react-colorful';
 import { findDOMNode } from 'react-dom';
 import { getDefined } from '../../../util/properties-type-guards';
 
-interface IRGBAColor {
+export interface IRGBAColor {
   r: number;
   g: number;
   b: number;

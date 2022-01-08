@@ -29,6 +29,7 @@ import { DateExample } from './examples/DateExample';
 import { LogoExample } from './examples/LogoExample';
 import { OthersExample } from './examples/OthersExample';
 import { ButtonExample } from './examples/ButtonExample';
+import { ColorExample } from './examples/ColorExample';
 
 const { TabPane } = Tabs;
 const { Sider, Content } = Layout;
@@ -40,6 +41,7 @@ const exampleComponents = {
   TagsExample,
   SwitchExample,
   SliderExample,
+  ColorExample,
   FileExample,
   DateExample,
   ModalExample,
