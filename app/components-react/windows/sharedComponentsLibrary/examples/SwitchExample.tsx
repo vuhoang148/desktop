@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CheckboxInput, SwitchInput } from '../../../shared/inputs';
-import { Example, useSharedComponentsLibrary } from '../SharedComponentsLibrary';
+import { Example, useSharedComponentsLibrary } from '../UILibrary';
 import InputWrapper from '../../../shared/inputs/InputWrapper';
 
 export function SwitchExample() {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ColorInput } from '../../../shared/inputs';
-import { Example, useSharedComponentsLibrary } from '../SharedComponentsLibrary';
+import { Example, useSharedComponentsLibrary } from '../UILibrary';
 import { IRGBAColor } from '../../../shared/inputs/ColorInput';
 
 export function ColorExample() {

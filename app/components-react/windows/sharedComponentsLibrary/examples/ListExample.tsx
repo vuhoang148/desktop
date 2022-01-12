@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ListInput } from '../../../shared/inputs';
-import { Example, useSharedComponentsLibrary } from '../SharedComponentsLibrary';
+import { Example, useSharedComponentsLibrary } from '../UILibrary';
 
 export function ListExample() {
   const { globalProps } = useSharedComponentsLibrary();

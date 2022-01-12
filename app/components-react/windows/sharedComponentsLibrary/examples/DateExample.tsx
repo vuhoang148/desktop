@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Example, useSharedComponentsLibrary } from '../SharedComponentsLibrary';
+import { Example, useSharedComponentsLibrary } from '../UILibrary';
 import { Alert } from 'antd';
 import { TimeInput } from '../../../shared/inputs';
 

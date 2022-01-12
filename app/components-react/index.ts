@@ -24,7 +24,7 @@ import RenameSource from './windows/RenameSource';
 import NotificationsArea from './root/NotificationsArea';
 import AppsNav from './sidebar/AppsNav';
 import StudioEditor from './root/StudioEditor';
-import SharedComponentsLibrary from './windows/sharedComponentsLibrary/SharedComponentsLibrary';
+import UILibrary from './windows/sharedComponentsLibrary/UILibrary';
 import { ObsSettings } from './windows/settings/ObsSettings';
 import ThemeAudit from './pages/ThemeAudit';
 import { WidgetWindow } from './widgets/common/WidgetWindow';
@@ -59,7 +59,7 @@ export const components = {
   StreamScheduler: createRoot(StreamScheduler),
   AdvancedStatistics,
   SourceProperties: createRoot(SourceProperties),
-  SharedComponentsLibrary: createRoot(SharedComponentsLibrary),
+  UILibrary: createRoot(UILibrary),
   StartStreamingButton,
   TestWidgets,
   RenameSource,

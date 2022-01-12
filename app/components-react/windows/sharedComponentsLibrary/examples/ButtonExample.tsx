@@ -1,5 +1,5 @@
 import React from 'react';
-import { Example, useSharedComponentsLibrary } from '../SharedComponentsLibrary';
+import { Example, useSharedComponentsLibrary } from '../UILibrary';
 import { Alert, Button, Space } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
 

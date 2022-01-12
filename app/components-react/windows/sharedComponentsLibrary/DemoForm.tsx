@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Example, useSharedComponentsLibrary } from './SharedComponentsLibrary';
+import { Example, useSharedComponentsLibrary } from './UILibrary';
 import { useFormState } from '../../hooks';
 import Utils from '../../../services/utils';
 import { IListOption, ListInput } from '../../shared/inputs/ListInput';

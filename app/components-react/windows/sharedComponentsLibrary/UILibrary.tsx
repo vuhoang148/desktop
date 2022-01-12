@@ -50,7 +50,7 @@ const exampleComponents = {
   OthersExample,
 };
 
-export default function SharedComponentsLibrary() {
+export default function UILibrary() {
   return (
     <ModalLayout>
       <Tabs defaultActiveKey="1">

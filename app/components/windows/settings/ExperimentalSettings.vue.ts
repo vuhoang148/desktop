@@ -39,10 +39,10 @@ export default class ExperimentalSettings extends Vue {
     });
   }
 
-  showDemoComponents() {
+  showUIComponents() {
     this.windowsService.showWindow({
-      title: 'Shared React Components',
-      componentName: 'SharedComponentsLibrary',
+      title: 'UI Library',
+      componentName: 'UILibrary',
       size: { width: 1000, height: 1000 },
     });
   }

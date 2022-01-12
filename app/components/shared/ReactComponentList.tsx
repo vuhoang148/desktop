@@ -224,11 +224,11 @@ export class SourceProperties extends ReactComponent {}
 export class ScreenCaptureProperties extends ReactComponent {}
 @Component({
   props: {
-    name: { default: 'SharedComponentsLibrary' },
+    name: { default: 'UILibrary' },
     wrapperStyles: { default: () => ({ height: '100%' }) },
   },
 })
-export class SharedComponentsLibrary extends ReactComponent {}
+export class UILibrary extends ReactComponent {}
 
 @Component({
   props: {

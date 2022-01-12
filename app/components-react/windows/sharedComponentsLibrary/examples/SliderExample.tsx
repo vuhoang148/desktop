@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { SliderInput } from '../../../shared/inputs';
-import { Example, useSharedComponentsLibrary } from '../SharedComponentsLibrary';
+import { Example, useSharedComponentsLibrary } from '../UILibrary';
 
 export function SliderExample() {
   const { globalProps } = useSharedComponentsLibrary();

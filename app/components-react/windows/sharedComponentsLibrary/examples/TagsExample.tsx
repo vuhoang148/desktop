@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TagsInput } from '../../../shared/inputs';
-import { Example, useSharedComponentsLibrary } from '../SharedComponentsLibrary';
+import { Example, useSharedComponentsLibrary } from '../UILibrary';
 import { Col, Row, Tag } from 'antd';
 
 export function TagsExample() {

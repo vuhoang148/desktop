@@ -1,5 +1,5 @@
 import React from 'react';
-import { Example } from '../SharedComponentsLibrary';
+import { Example } from '../UILibrary';
 import { Button, Space } from 'antd';
 import { alertAsync, confirmAsync, promptAsync } from '../../../modals';
 

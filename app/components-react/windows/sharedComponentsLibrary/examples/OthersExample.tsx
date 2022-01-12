@@ -1,5 +1,5 @@
 import React from 'react';
-import { Example } from '../SharedComponentsLibrary';
+import { Example } from '../UILibrary';
 import { Alert, Menu, Timeline } from 'antd';
 
 export function OthersExample() {

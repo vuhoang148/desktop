@@ -7,9 +7,7 @@
         <br />
         <br />
         <br />
-        <button class="button button--action" @click="showDemoComponents()">
-          Show Shared Components Library
-        </button>
+        <button class="button button--action" @click="showUIComponents()">Show UI Library</button>
         <br />
         <br />
       </div>

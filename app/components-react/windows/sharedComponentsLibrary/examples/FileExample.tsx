@@ -1,6 +1,6 @@
 import React from 'react';
 import { AudioUrlInput, FileInput, ImageInput, MediaUrlInput } from '../../../shared/inputs';
-import { Example, useSharedComponentsLibrary } from '../SharedComponentsLibrary';
+import { Example, useSharedComponentsLibrary } from '../UILibrary';
 import { useFormState } from '../../../hooks';
 
 export function FileExample() {

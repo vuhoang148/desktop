@@ -12,7 +12,7 @@ test('Form inputs', async t => {
 
   // open demo-form
   await showSettingsWindow('Experimental');
-  await clickButton('Show Shared Components Library');
+  await clickButton('Show UI Library');
   await clickTab('Demo Form');
 
   // test that we can read the form data correctly
