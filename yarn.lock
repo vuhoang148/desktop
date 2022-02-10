@@ -2548,7 +2548,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:17.0.8":
+"@types/react@npm:*":
   version: 17.0.8
   resolution: "@types/react@npm:17.0.8"
   dependencies:
@@ -2556,6 +2556,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 6398dc200623dbf213747f3a1cf9f3c3bcac29b519e49c9fcb81d2665dadb21155c485381cddbb04b483a5bf3ddddefaff1a1a6ef4fa5080b1b9b144c789673e
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:17.0.39":
+  version: 17.0.39
+  resolution: "@types/react@npm:17.0.39"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: bf04d3c2894559012710d595553e12b422d3b91cd8f4f7e122d8cb044ba9c2ba17f6e8a4e09581359cc5509ddc59cd8c8fabd6774f3505a40a45393f074d6e6e
   languageName: node
   linkType: hard
 
@@ -14391,7 +14402,7 @@ __metadata:
     "@types/node-fetch": 2.5.10
     "@types/overlayscrollbars": 1.12.0
     "@types/qrcode.react": 1.0.2
-    "@types/react": 17.0.8
+    "@types/react": 17.0.39
     "@types/request": 2.48.5
     "@types/semver": 6.2.1
     "@types/socket.io-client": 1.4.32
